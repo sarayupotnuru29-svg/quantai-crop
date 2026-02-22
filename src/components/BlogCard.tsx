@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 interface BlogCardProps {
@@ -12,7 +13,7 @@ const BlogCard = ({ title, image, delay = 0 }: BlogCardProps) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay }}
-    className="glass-card group overflow-hidden cursor-pointer"
+    className="glass-card group overflow-hidden"
   >
     <div className="overflow-hidden aspect-video">
       <img
@@ -25,7 +26,12 @@ const BlogCard = ({ title, image, delay = 0 }: BlogCardProps) => (
       <h3 className="font-display font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
         {title}
       </h3>
-      <span className="text-sm text-primary font-medium">Read More →</span>
+      <Link
+        to="/contact"
+        className="text-sm text-primary font-medium hover:underline"
+      >
+        Read More →
+      </Link>
     </div>
   </motion.div>
 );

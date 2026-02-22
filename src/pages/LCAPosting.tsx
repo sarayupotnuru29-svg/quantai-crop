@@ -3,9 +3,24 @@ import { motion } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import AnimatedSection from "@/components/AnimatedSection";
 import { toast } from "sonner";
-import lcaHero from "@/assets/lca-hero.jpg";
+import lcaHero from "@/assets/lca-hero-new.jpg";
 
 const visaTypes = ["H-1B", "L-1A", "L-1B", "O-1", "TN", "E-2", "H-4 EAD", "OPT", "CPT", "Other"];
+
+const jobRoles = [
+  "Senior Cloud Architect",
+  "AI/ML Engineer",
+  "DevOps Engineer",
+  "Full Stack Developer",
+  "Cybersecurity Analyst",
+  "Data Engineer",
+  "Solutions Architect",
+  "Software Engineer",
+  "QA Engineer",
+  "Project Manager",
+  "Business Analyst",
+  "Other",
+];
 
 const LCAPosting = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +31,7 @@ const LCAPosting = () => {
     location: "",
     education: "",
     visaType: "",
+    role: "",
     technologies: "",
     experience: "",
   });
@@ -30,7 +46,7 @@ const LCAPosting = () => {
     toast.success("Application submitted successfully! We will contact you shortly.");
     setFormData({
       firstName: "", lastName: "", email: "", mobile: "",
-      location: "", education: "", visaType: "", technologies: "", experience: "",
+      location: "", education: "", visaType: "", role: "", technologies: "", experience: "",
     });
     setResume(null);
   };
@@ -84,14 +100,25 @@ const LCAPosting = () => {
                 <input name="education" value={formData.education} onChange={handleChange} required className={inputClass} placeholder="e.g., Master's in Computer Science" />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Visa Type *</label>
-                <select name="visaType" value={formData.visaType} onChange={handleChange} required className={inputClass}>
-                  <option value="">Select Visa Type</option>
-                  {visaTypes.map((v) => (
-                    <option key={v} value={v}>{v}</option>
-                  ))}
-                </select>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Visa Type *</label>
+                  <select name="visaType" value={formData.visaType} onChange={handleChange} required className={inputClass}>
+                    <option value="">Select Visa Type</option>
+                    {visaTypes.map((v) => (
+                      <option key={v} value={v}>{v}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Role *</label>
+                  <select name="role" value={formData.role} onChange={handleChange} required className={inputClass}>
+                    <option value="">Select Role</option>
+                    {jobRoles.map((r) => (
+                      <option key={r} value={r}>{r}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <div>
