@@ -3,16 +3,16 @@ import PageHero from "@/components/PageHero";
 import softwareHero from "@/assets/software-hero.jpg";
 import serviceCloud from "@/assets/service-cloud.jpg";
 import serviceDevops from "@/assets/service-devops.jpg";
-import serviceAi from "@/assets/service-ai.jpg";
+import appModernization from "@/assets/app-modernization.jpg";
 import serviceApi from "@/assets/service-api.jpg";
-import serviceSecurity from "@/assets/service-security.jpg";
+import infraOptimize from "@/assets/infra-optimize.jpg";
 
 const sections = [
   { title: "Cloud Architecture", desc: "Scalable, secure cloud solutions across AWS, Azure, and GCP for enterprise workloads.", image: serviceCloud },
   { title: "DevOps & CI/CD", desc: "Automated deployment pipelines, infrastructure as code, and continuous delivery workflows.", image: serviceDevops },
-  { title: "Application Modernization", desc: "Legacy system transformation to modern, cloud-native architectures.", image: serviceAi },
+  { title: "Application Modernization", desc: "Legacy system transformation to modern, cloud-native architectures.", image: appModernization },
   { title: "API & Microservices", desc: "Robust API design and microservices architecture for scalable applications.", image: serviceApi },
-  { title: "Infrastructure Optimization", desc: "Performance tuning, cost optimization, and infrastructure reliability engineering.", image: serviceSecurity },
+  { title: "Infrastructure Optimization", desc: "Performance tuning, cost optimization, and infrastructure reliability engineering.", image: infraOptimize },
 ];
 
 const SoftwareEngineering = () => (

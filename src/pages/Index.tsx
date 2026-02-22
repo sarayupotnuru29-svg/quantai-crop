@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import BlogCard from "@/components/BlogCard";
+import CompanyMarquee from "@/components/CompanyMarquee";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import whoWeAre from "@/assets/who-we-are.jpg";
@@ -12,6 +13,10 @@ import serviceDevops from "@/assets/service-devops.jpg";
 import blogAi from "@/assets/blog-ai-future.jpg";
 import blogCloud from "@/assets/blog-cloud.jpg";
 import blogTalent from "@/assets/blog-talent.jpg";
+import chooseStrategy from "@/assets/choose-strategy.jpg";
+import chooseTalent from "@/assets/choose-talent.jpg";
+import chooseScale from "@/assets/choose-scale.jpg";
+import chooseGovernance from "@/assets/choose-governance.jpg";
 
 const services = [
   { title: "AI & Data Solutions", desc: "Machine learning deployment, predictive analytics, and AI governance frameworks.", image: serviceAi },
@@ -21,10 +26,10 @@ const services = [
 ];
 
 const whyChoose = [
-  { title: "Strategic Execution", desc: "Advisory insight with hands-on implementation.", image: serviceAi },
-  { title: "AI-Powered Talent", desc: "Faster hiring. Better alignment. Higher retention.", image: blogTalent },
-  { title: "Scalable Models", desc: "Flexible delivery frameworks for enterprise needs.", image: serviceCloud },
-  { title: "Enterprise Governance", desc: "Structured processes with measurable KPIs.", image: serviceSecurity },
+  { title: "Strategic Execution", desc: "Advisory insight with hands-on implementation.", image: chooseStrategy },
+  { title: "AI-Powered Talent", desc: "Faster hiring. Better alignment. Higher retention.", image: chooseTalent },
+  { title: "Scalable Models", desc: "Flexible delivery frameworks for enterprise needs.", image: chooseScale },
+  { title: "Enterprise Governance", desc: "Structured processes with measurable KPIs.", image: chooseGovernance },
 ];
 
 const Home = () => {
@@ -78,6 +83,9 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Company Marquee */}
+      <CompanyMarquee />
+
       {/* Who We Are */}
       <section className="py-24">
         <div className="section-container">
@@ -109,7 +117,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services */}
+      {/* Services - single row with smaller images */}
       <section className="py-24 gradient-section">
         <div className="section-container">
           <AnimatedSection className="text-center mb-16">
@@ -121,22 +129,22 @@ const Home = () => {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {services.map((service, i) => (
               <AnimatedSection key={service.title} delay={i * 0.1}>
-                <div className="glass-card group overflow-hidden">
-                  <div className="overflow-hidden aspect-video">
+                <div className="glass-card group overflow-hidden h-full">
+                  <div className="overflow-hidden h-36">
                     <img
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <div className="p-4">
+                    <h3 className="font-display text-sm lg:text-base font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm">{service.desc}</p>
+                    <p className="text-muted-foreground text-xs lg:text-sm line-clamp-2">{service.desc}</p>
                   </div>
                 </div>
               </AnimatedSection>

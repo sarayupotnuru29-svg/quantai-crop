@@ -2,15 +2,16 @@ import AnimatedSection from "@/components/AnimatedSection";
 import PageHero from "@/components/PageHero";
 import aboutHero from "@/assets/about-hero.jpg";
 import whoWeAre from "@/assets/who-we-are.jpg";
-import serviceAi from "@/assets/service-ai.jpg";
-import serviceCloud from "@/assets/service-cloud.jpg";
-import serviceSecurity from "@/assets/service-security.jpg";
+import valueIntegrity from "@/assets/value-integrity.jpg";
+import valueExcellence from "@/assets/value-excellence.jpg";
+import valuePartnership from "@/assets/value-partnership.jpg";
+import valueInnovation from "@/assets/value-innovation.jpg";
 
 const values = [
-  { title: "Integrity & Transparency", desc: "We build trust through honest communication and ethical practices.", image: serviceSecurity },
-  { title: "Engineering Excellence", desc: "We deliver solutions with the highest technical standards.", image: serviceCloud },
-  { title: "Client-Centric Partnership", desc: "Your success is our mission — we grow with our clients.", image: whoWeAre },
-  { title: "Continuous Innovation", desc: "We stay ahead of the curve with cutting-edge technology.", image: serviceAi },
+  { title: "Integrity & Transparency", desc: "We build trust through honest communication and ethical practices.", image: valueIntegrity },
+  { title: "Engineering Excellence", desc: "We deliver solutions with the highest technical standards.", image: valueExcellence },
+  { title: "Client-Centric Partnership", desc: "Your success is our mission — we grow with our clients.", image: valuePartnership },
+  { title: "Continuous Innovation", desc: "We stay ahead of the curve with cutting-edge technology.", image: valueInnovation },
 ];
 
 const About = () => (
