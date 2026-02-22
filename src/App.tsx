@@ -3,7 +3,16 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
+import Home from "./pages/Index";
+import About from "./pages/About";
+import ITConsulting from "./pages/ITConsulting";
+import SoftwareEngineering from "./pages/SoftwareEngineering";
+import Contact from "./pages/Contact";
+import LCAPosting from "./pages/LCAPosting";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -14,11 +23,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollProgress />
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/it-consulting" element={<ITConsulting />} />
+          <Route path="/software-engineering" element={<SoftwareEngineering />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/lca-posting" element={<LCAPosting />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
+        <BackToTop />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
