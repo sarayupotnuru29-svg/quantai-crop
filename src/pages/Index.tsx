@@ -4,7 +4,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import BlogCard from "@/components/BlogCard";
 import CompanyMarquee from "@/components/CompanyMarquee";
 
-import heroBg from "@/assets/hero-bg.jpg";
+import heroLogo from "@/assets/quantai-logo.png";
 import whoWeAre from "@/assets/who-we-are.jpg";
 import serviceAi from "@/assets/service-ai.jpg";
 import serviceCloud from "@/assets/service-cloud.jpg";
@@ -38,16 +38,23 @@ const Home = () => {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="AI Background" className="w-full h-full object-cover" />
           <div className="hero-overlay absolute inset-0" />
           <div className="ai-grid-bg absolute inset-0" />
         </div>
 
-        <div className="relative z-10 section-container text-center pt-20">
+        <div className="relative z-10 section-container text-center pt-20 flex flex-col items-center">
+          <motion.img
+            src={heroLogo}
+            alt="QuantAI Corp"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain mb-8"
+          />
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="font-display text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-6 text-balance"
           >
             Engineering the Future of{" "}
@@ -56,30 +63,11 @@ const Home = () => {
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
           >
             AI-driven IT Consulting, Software Solutions & Talent Intelligence.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link
-              to="/contact"
-              className="px-8 py-3.5 rounded-lg bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-all border border-border/30"
-            >
-              Schedule Consultation
-            </Link>
-            <Link
-              to="/lca-posting"
-              className="px-8 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all animate-pulse-glow"
-            >
-              LCA Posting
-            </Link>
-          </motion.div>
         </div>
       </section>
 
