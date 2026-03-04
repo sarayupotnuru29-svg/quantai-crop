@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { MapPin, Briefcase } from "lucide-react";
 import { MapPin, Briefcase } from "lucide-react";
 
 interface JobCardProps {
