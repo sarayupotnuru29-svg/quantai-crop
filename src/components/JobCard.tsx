@@ -1,5 +1,4 @@
 import { MapPin, Briefcase } from "lucide-react";
-import { MapPin, Briefcase } from "lucide-react";
 
 interface JobCardProps {
   title: string;
