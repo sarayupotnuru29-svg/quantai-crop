@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const pos = useRef({ x: 0, y: 0 });
+  const ringPos = useRef({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const raf = useRef<number>(0);
 
   useEffect(() => {
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
@@ -12,88 +15,86 @@ const CustomCursor = () => {
 
     setIsVisible(true);
 
-    const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const onMove = (e: MouseEvent) => {
+      pos.current = { x: e.clientX, y: e.clientY };
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
+      }
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
+    const onOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
+      const isClickable =
         target.closest("a") ||
         target.closest("button") ||
         target.closest("[role='button']") ||
         target.closest("input") ||
         target.closest("textarea") ||
-        target.closest("select")
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+        target.closest("select");
+      setIsHovering(!!isClickable);
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const onLeave = () => setIsVisible(false);
+    const onEnter = () => setIsVisible(true);
 
-    window.addEventListener("mousemove", updatePosition);
-    window.addEventListener("mouseover", handleMouseOver);
-    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
-    document.documentElement.addEventListener("mouseenter", handleMouseEnter);
+    // Lerp loop for outer ring
+    const lerp = (a: number, b: number, n: number) => a + (b - a) * n;
+    const animate = () => {
+      ringPos.current.x = lerp(ringPos.current.x, pos.current.x, 0.15);
+      ringPos.current.y = lerp(ringPos.current.y, pos.current.y, 0.15);
+      if (ringRef.current) {
+        const size = isHovering ? 50 : 36;
+        const offset = size / 2;
+        ringRef.current.style.transform = `translate(${ringPos.current.x - offset}px, ${ringPos.current.y - offset}px)`;
+        ringRef.current.style.width = `${size}px`;
+        ringRef.current.style.height = `${size}px`;
+      }
+      raf.current = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseover", onOver);
+    document.documentElement.addEventListener("mouseleave", onLeave);
+    document.documentElement.addEventListener("mouseenter", onEnter);
+    raf.current = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener("mousemove", updatePosition);
-      window.removeEventListener("mouseover", handleMouseOver);
-      document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
-      document.documentElement.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", onOver);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
+      document.documentElement.removeEventListener("mouseenter", onEnter);
+      cancelAnimationFrame(raf.current);
     };
-  }, []);
+  }, [isHovering]);
 
   if (!isVisible) return null;
 
   return (
     <>
-      {/* Center dot */}
-      <motion.div
-        className="fixed top-0 left-0 z-[9999] pointer-events-none"
-        animate={{
-          x: position.x - 3,
-          y: position.y - 3,
-          scale: isHovering ? 1.5 : 1,
-        }}
-        transition={{ type: "tween", duration: 0.05 }}
+      {/* Inner dot */}
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
         style={{
-          width: 6,
-          height: 6,
+          width: 8,
+          height: 8,
           borderRadius: "50%",
-          backgroundColor: "hsl(var(--foreground))",
+          backgroundColor: "#fff",
+          willChange: "transform",
         }}
       />
-      {/* Horizontal line */}
-      <motion.div
-        className="fixed top-0 left-0 z-[9998] pointer-events-none"
-        animate={{
-          x: position.x - 12,
-          y: position.y - 0.5,
-          width: isHovering ? 30 : 24,
-        }}
-        transition={{ type: "tween", duration: 0.08 }}
+      {/* Outer ring */}
+      <div
+        ref={ringRef}
+        className="fixed top-0 left-0 z-[9998] pointer-events-none mix-blend-difference"
         style={{
-          height: 1,
-          backgroundColor: "hsl(var(--muted-foreground) / 0.6)",
-        }}
-      />
-      {/* Vertical line */}
-      <motion.div
-        className="fixed top-0 left-0 z-[9998] pointer-events-none"
-        animate={{
-          x: position.x - 0.5,
-          y: position.y - 12,
-          height: isHovering ? 30 : 24,
-        }}
-        transition={{ type: "tween", duration: 0.08 }}
-        style={{
-          width: 1,
-          backgroundColor: "hsl(var(--muted-foreground) / 0.6)",
+          width: 36,
+          height: 36,
+          borderRadius: "50%",
+          border: `2px solid rgba(255,255,255,${isHovering ? 0.9 : 0.5})`,
+          backgroundColor: isHovering ? "rgba(255,255,255,0.08)" : "transparent",
+          willChange: "transform, width, height",
+          transition: "width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease",
         }}
       />
     </>
