@@ -61,25 +61,6 @@ const Home = () => {
           >
             AI-driven IT Consulting, Software Solutions & Talent Intelligence.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link
-              to="/contact"
-              className="px-8 py-3.5 rounded-lg bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-all border border-border/30"
-            >
-              Schedule Consultation
-            </Link>
-            <Link
-              to="/lca-posting"
-              className="px-8 py-3.5 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all animate-pulse-glow"
-            >
-              LCA Posting
-            </Link>
-          </motion.div>
         </div>
       </section>
 

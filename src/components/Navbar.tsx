@@ -61,12 +61,6 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/lca-posting"
-            className="ml-3 px-5 py-2.5 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 animate-pulse-glow"
-          >
-            LCA Posting
-          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -102,12 +96,6 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <Link
-                to="/lca-posting"
-                className="mt-2 px-5 py-3 rounded-lg text-sm font-semibold bg-primary text-primary-foreground text-center"
-              >
-                LCA Posting
-              </Link>
             </div>
           </motion.div>
         )}

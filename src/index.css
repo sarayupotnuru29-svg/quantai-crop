@@ -156,3 +156,10 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Custom cursor - hide default on desktop */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
