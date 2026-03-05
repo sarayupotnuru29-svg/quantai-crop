@@ -12,7 +12,7 @@ import About from "./pages/About";
 import ITConsulting from "./pages/ITConsulting";
 import SoftwareEngineering from "./pages/SoftwareEngineering";
 import Contact from "./pages/Contact";
-
+import LCAPosting from "./pages/LCAPosting";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,7 +31,7 @@ const App = () => (
           <Route path="/it-consulting" element={<ITConsulting />} />
           <Route path="/software-engineering" element={<SoftwareEngineering />} />
           <Route path="/contact" element={<Contact />} />
-          
+          <Route path="/lca-posting" element={<LCAPosting />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

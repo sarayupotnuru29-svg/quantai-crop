@@ -179,6 +179,7 @@ const Footer = () => {
               {[
                 { name: "About Us", path: "/about" },
                 { name: "Contact", path: "/contact" },
+                { name: "LCA Posting", path: "/lca-posting" },
                 { name: "Blog", path: "/contact" },
               ].map((item) => (
                 <li key={item.name}>

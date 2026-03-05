@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MapPin, Briefcase } from "lucide-react";
 
 interface JobCardProps {
@@ -15,12 +16,12 @@ const JobCard = ({ title, location, experience }: JobCardProps) => (
         <span className="flex items-center gap-1"><Briefcase size={14} /> {experience}</span>
       </div>
     </div>
-    <a
-      href="mailto:hr@quantaicorp.com"
+    <Link
+      to="/lca-posting"
       className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all whitespace-nowrap text-center"
     >
       Apply Now
-    </a>
+    </Link>
   </div>
 );
 
