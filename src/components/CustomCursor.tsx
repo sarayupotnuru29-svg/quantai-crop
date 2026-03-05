@@ -7,7 +7,6 @@ const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only show custom cursor on desktop
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
     if (isTouchDevice) return;
 
@@ -53,36 +52,48 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Dot */}
+      {/* Center dot */}
       <motion.div
-        className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
+        className="fixed top-0 left-0 z-[9999] pointer-events-none"
         animate={{
-          x: position.x - 4,
-          y: position.y - 4,
-          scale: isHovering ? 0 : 1,
+          x: position.x - 3,
+          y: position.y - 3,
+          scale: isHovering ? 1.5 : 1,
         }}
         transition={{ type: "tween", duration: 0.05 }}
         style={{
-          width: 8,
-          height: 8,
+          width: 6,
+          height: 6,
           borderRadius: "50%",
-          backgroundColor: "hsl(var(--primary))",
+          backgroundColor: "hsl(var(--foreground))",
         }}
       />
-      {/* Ring */}
+      {/* Horizontal line */}
       <motion.div
         className="fixed top-0 left-0 z-[9998] pointer-events-none"
         animate={{
-          x: position.x - (isHovering ? 24 : 16),
-          y: position.y - (isHovering ? 24 : 16),
-          width: isHovering ? 48 : 32,
-          height: isHovering ? 48 : 32,
+          x: position.x - 12,
+          y: position.y - 0.5,
+          width: isHovering ? 30 : 24,
         }}
-        transition={{ type: "spring", stiffness: 250, damping: 20, mass: 0.5 }}
+        transition={{ type: "tween", duration: 0.08 }}
         style={{
-          borderRadius: "50%",
-          border: `2px solid hsl(var(--primary) / ${isHovering ? 0.8 : 0.4})`,
-          backgroundColor: isHovering ? "hsl(var(--primary) / 0.1)" : "transparent",
+          height: 1,
+          backgroundColor: "hsl(var(--muted-foreground) / 0.6)",
+        }}
+      />
+      {/* Vertical line */}
+      <motion.div
+        className="fixed top-0 left-0 z-[9998] pointer-events-none"
+        animate={{
+          x: position.x - 0.5,
+          y: position.y - 12,
+          height: isHovering ? 30 : 24,
+        }}
+        transition={{ type: "tween", duration: 0.08 }}
+        style={{
+          width: 1,
+          backgroundColor: "hsl(var(--muted-foreground) / 0.6)",
         }}
       />
     </>
