@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-// import { Linkedin, Facebook, Instagram } from "lucide-react";
+// import { Linkedin, Facebook, Instagram, Heart } from "lucide-react";
 // // Importing the logo from your assets folder
 // import logo from "../assets/quantai-logo.png";
 
@@ -59,7 +59,6 @@
 //               {[
 //                 { name: "About Us", path: "/about" },
 //                 { name: "Contact", path: "/contact" },
-//                 { name: "LCA Posting", path: "/lca-posting" },
 //                 { name: "Blog", path: "/contact" },
 //               ].map((item) => (
 //                 <li key={item.name}>
@@ -104,8 +103,27 @@
 //           </div>
 //         </div>
 
-//         <div className="mt-12 pt-8 border-t border-border/30 text-center text-sm text-muted-foreground">
-//           © {new Date().getFullYear()} QuantAI Corp LLC. All rights reserved.
+//         {/* Bottom Section */}
+//         <div className="mt-12 pt-8 border-t border-border/30 text-center text-sm text-muted-foreground space-y-4">
+//           <p>© {new Date().getFullYear()} QuantAI Corp LLC. All rights reserved.</p>
+          
+//           {/* StaffArc Attribution */}
+//           <div className="flex justify-center items-center gap-1">
+//             Made with <Heart className="inline h-4 w-4 text-red-500 mx-1 fill-red-500" /> by
+//             <a
+//               href="https://staffarc.in"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="flex items-center gap-1 text-orange-600 font-medium hover:underline"
+//             >
+//               <img
+//                 src="https://www.staffarc.in/images/Staffarc-logo.png"
+//                 alt="StaffArc logo"
+//                 className="h-5 w-5 object-contain"
+//               />
+//               StaffArc
+//             </a>
+//           </div>
 //         </div>
 //       </div>
 //     </footer>
@@ -113,8 +131,6 @@
 // };
 
 // export default Footer;
-
-
 
 
 
@@ -214,11 +230,23 @@ const Footer = () => {
                 </a>
               ))}
             </div>
+            {/* Updated Address Section */}
             <div className="mt-4 text-sm text-muted-foreground space-y-1">
-              <p>📍 301 McCullough Drive, Suite 400</p>
-              <p className="pl-5">Charlotte, NC 28262</p>
-              <p className="mt-2">📞 +1 980-272-8321</p>
-              <p>📧 hr@quantaicorp.com</p>
+              <div className="flex gap-2">
+                <span>📍</span>
+                <address className="not-italic">
+                  QuantAI Corp LLC<br />
+                  10926 David Taylor Drive<br />
+                  Suite 120 PMB1334<br />
+                  Charlotte, NC 28262
+                </address>
+              </div>
+              <p className="mt-2 flex items-center gap-2">
+                <span>📞</span> +1 980-272-8321
+              </p>
+              <p className="flex items-center gap-2">
+                <span>📧</span> hr@quantaicorp.com
+              </p>
             </div>
           </div>
         </div>
